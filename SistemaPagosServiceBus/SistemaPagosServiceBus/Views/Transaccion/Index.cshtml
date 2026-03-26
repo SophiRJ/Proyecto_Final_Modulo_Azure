@@ -1,0 +1,198 @@
+﻿@model IEnumerable<SistemaPagosServiceBus.Models.Transaccion>
+
+@{
+    ViewData["Title"] = "Panel de Control de Pagos";
+}
+
+<link rel="stylesheet" href="~/css/pagos.css" />
+
+<div class="container-fluid py-4" style="padding-left:2rem;padding-right:2rem;">
+
+    <div class="d-flex align-items-start justify-content-between mb-4">
+        <div>
+            <p class="arch-section-label mb-1">
+                <i class="bi bi-cpu me-1"></i> Azure Service Bus
+            </p>
+            <h2 class="hero-title mb-0" style="font-size:2rem;">
+                Panel de <span class="accent">Control</span>
+            </h2>
+        </div>
+        <div class="d-flex gap-2 pt-2">
+            
+            <a asp-controller="Form" asp-action="Index"
+               class="btn btn-gold d-inline-flex align-items-center gap-2 shadow-sm">
+                <i class="bi bi-plus-circle"></i> Nueva Transacción
+            </a>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="panel-card shadow-sm">
+                <div class="panel-header d-flex justify-content-between align-items-center p-3">
+                    <span><i class="bi bi-table"></i> Monitor de Transacciones</span>
+                    <div class="d-flex gap-2">
+                        <a asp-action="ReceiveMessageFromQueue"
+                           class="btn btn-outline-gold d-inline-flex align-items-center gap-2 btn-sm">
+                            <i class="bi bi-gear"></i> Procesar Cola
+                        </a>
+                        <a asp-action="MonitorDLQ"
+                           class="btn btn-outline-gold d-inline-flex align-items-center gap-2 btn-sm"
+                           style="border-color:rgba(248,113,113,.35); color:#f87171;">
+                            <i class="bi bi-exclamation-triangle"></i> Dead Letter
+                        </a>
+                    </div>
+                </div>
+                <div class="table-responsive" style="max-height:480px; overflow-y:auto;">
+                    <table class="pago-table w-100">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tipo</th>
+                                <th>Monto</th>
+                                <th>Estado</th>
+                                <th>Cuenta</th>
+                                <th>Fecha Envio</th>
+                                <th>Fecha Notificacion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var t in Model)
+                            {
+                                <tr>
+                                    <td><span class="trans-id">@t.TransaccionId</span></td>
+                                    <td><span style="font-size:.83rem;">@t.TipoTransaccion</span></td>
+                                    <td><strong>@t.Monto.ToString("C")</strong></td>
+                                    <td>
+                                        @if (t.Estado == "Pendiente")
+                                        {
+                                            <span class="badge-pendiente">Pendiente</span>
+                                        }
+                                        else if (t.Estado == "Exitosa")
+                                        {
+                                            <span class="badge-exitosa">Exitosa</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge-fallida">Fallida</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <span class="cuenta">
+                                            @if (!string.IsNullOrEmpty(t.CuentaDestino) && t.CuentaDestino.Length >= 4)
+                                            {
+                                                @:****@t.CuentaDestino.Substring(t.CuentaDestino.Length - 4)
+                                            }
+                                            else
+                                            {
+                                                @t.CuentaDestino
+                                            }
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="fecha">
+                                            @t.FechaCreacion.ToString("dd/MM/yyyy HH:mm")
+                                        </span>
+                                    </td>
+                                <td>
+                                    @(t.FechaNotificacion.HasValue
+                                                                        ? t.FechaNotificacion.Value.ToString("dd/MM/yyyy HH:mm")
+                                                                        : "-")
+                                </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row g-4 mt-2">
+
+        <div class="col-md-6">
+            <div class="panel-card side-card notif shadow-sm h-100">
+                <div class="panel-header">
+                    <span><i class="bi bi-bell"></i> Notificaciones Enviadas</span>
+                    <span class="tag">Suscripción Cliente</span>
+                </div>
+                <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                    <table class="pago-table w-100">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Transacción</th>
+                                <th>Estado</th>
+                                <th>Envío</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var t in Model.Where(x => x.Notificacion != null))
+                            {
+                                <tr>
+                                    <td class="small">@t.Notificacion.EmailCliente</td>
+                                    <td><span class="badge bg-secondary">#@t.TransaccionId</span></td>
+                                    <td><span class="text-success small">@t.Notificacion.EstadoNotificacion</span></td>
+                                    <td class="fecha small">@t.Notificacion.FechaEnvio.ToString("dd/MM/yyyy HH:mm")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel-card side-card audit shadow-sm h-100">
+                <div class="panel-header">
+                    <span><i class="bi bi-journal-text"></i> Log de Auditoría</span>
+                    <span class="tag">Suscripción Auditoría</span>
+                </div>
+                <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                    <table class="pago-table w-100">
+                        <thead>
+                            <tr>
+                                <th>Evento</th>
+                                <th>ID</th>
+                                <th>Descripción</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var e in Model.SelectMany(t => t.Eventos).OrderByDescending(x => x.TransaccionId).Take(10))
+                            {
+                                <tr>
+                                    <td>
+                                        <span class="@(e.TipoEvento.Contains("aprobada") ? "text-success" : "text-danger") small fw-bold">
+                                            @e.TipoEvento
+                                        </span>
+                                    </td>
+                                    <td><span class="badge bg-secondary">#@e.TransaccionId</span></td>
+                                    <td class="small" style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        @e.Descripcion
+                                    </td>
+                                    <td class="fecha small">@e.FechaEvento.ToString("dd/MM/yyyy HH:mm")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<style>
+    .scroll-panel::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .scroll-panel::-webkit-scrollbar-thumb {
+        background: rgba(212, 175, 55, 0.3);
+        border-radius: 10px;
+    }
+
+    .pago-table th {
+        white-space: nowrap;
+    }
+</style>

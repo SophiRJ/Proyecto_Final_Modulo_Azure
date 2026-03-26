@@ -1,0 +1,637 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface-2: #1a1a1a;
+    --border: #2a2a2a;
+    --border-hover: #f59e0b;
+    --gold: #f59e0b;
+    --gold-dim: #d97706;
+    --gold-glow: rgba(245,158,11,.15);
+    --gold-line: rgba(245,158,11,.25);
+    --text: #f5f5f5;
+    --text-muted: #737373;
+    --text-soft: #a3a3a3;
+}
+
+body {
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
+    font-family: 'Outfit', sans-serif !important;
+}
+.status-badge {
+    background: transparent;
+    border: 1px solid var(--border) !important;
+    color: var(--text-muted);
+    font-size: .72rem;
+    letter-spacing: .07em;
+    font-weight: 500;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: inline-block;
+    animation: glow-pulse 2.5s infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(245,158,11,.5);
+    }
+
+    50% {
+        box-shadow: 0 0 0 5px rgba(245,158,11,0);
+    }
+}
+
+.hero-title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.15;
+    color: var(--text);
+}
+
+    .hero-title .accent {
+        color: var(--gold);
+    }
+
+.hero-desc {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+.pago-card {
+    background: var(--surface);
+    border: 1px solid var(--border) !important;
+    border-radius: 14px !important;
+    transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+
+    .pago-card:hover {
+        border-color: var(--border-hover) !important;
+        box-shadow: 0 0 32px var(--gold-glow) !important;
+        transform: translateY(-4px);
+    }
+
+.icon-chip {
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    background: var(--gold-glow);
+    border: 1px solid var(--gold-line);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+}
+
+.card-num {
+    font-size: .68rem;
+    letter-spacing: .12em;
+    font-weight: 600;
+    color: var(--border-hover);
+    text-transform: uppercase;
+}
+
+.pago-card .card-title {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: -.01em;
+}
+
+.pago-card .card-desc {
+    color: var(--text-soft);
+    font-size: .9rem;
+    line-height: 1.65;
+    font-weight: 300;
+}
+
+.btn-gold {
+    background: var(--gold);
+    border: none;
+    color: #000;
+    font-weight: 600;
+    font-size: .88rem;
+    border-radius: 8px;
+    padding: .55rem 1.4rem;
+    transition: background .2s ease, transform .15s ease;
+}
+
+    .btn-gold:hover {
+        background: var(--gold-dim);
+        color: #000;
+        transform: translateY(-1px);
+    }
+
+.btn-outline-gold {
+    background: transparent;
+    border: 1px solid var(--gold-line);
+    color: var(--gold);
+    font-weight: 600;
+    font-size: .88rem;
+    border-radius: 8px;
+    padding: .55rem 1.4rem;
+    transition: background .2s ease, border-color .2s ease;
+}
+
+    .btn-outline-gold:hover {
+        background: var(--gold-glow);
+        border-color: var(--gold);
+        color: var(--gold);
+    }
+
+/* ── ARCHITECTURE ────────────────────────────────────── */
+.arch-card {
+    background: var(--surface);
+    border: 1px solid var(--border) !important;
+    border-radius: 14px !important;
+}
+
+.arch-section-label {
+    font-size: .68rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.arch-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin: 0 auto;
+    transition: border-color .2s, color .2s;
+}
+
+.arch-step:hover .arch-icon {
+    border-color: var(--gold-line);
+    color: var(--gold);
+}
+
+.arch-step-name {
+    font-size: .83rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: .5rem;
+}
+
+.arch-step-sub {
+    font-size: .72rem;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+.arch-sep {
+    color: var(--border);
+    font-size: .8rem;
+}
+/* ── PANEL / TABLE ───────────────────────────────────── */
+.panel-card {
+    background: var(--surface);
+    border: 1px solid var(--border) !important;
+    border-radius: 14px !important;
+    overflow: hidden;
+}
+
+.panel-header {
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+    padding: .85rem 1.4rem;
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .panel-header span {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        color: var(--text-soft);
+    }
+
+.btn-refresh {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: .73rem;
+    border-radius: 7px;
+    padding: .3rem .85rem;
+    font-family: 'Outfit', sans-serif;
+    transition: border-color .2s, color .2s;
+    cursor: pointer;
+}
+
+    .btn-refresh:hover {
+        border-color: var(--gold-line);
+        color: var(--gold);
+    }
+
+.pago-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .875rem;
+}
+
+    .pago-table thead tr {
+        border-bottom: 1px solid var(--border);
+    }
+
+    .pago-table thead th {
+        padding: .7rem 1.25rem;
+        font-size: .65rem;
+        font-weight: 600;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        background: var(--surface);
+        white-space: nowrap;
+    }
+
+    .pago-table tbody tr {
+        border-bottom: 1px solid var(--border);
+        transition: background .15s ease;
+    }
+
+        .pago-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .pago-table tbody tr:hover {
+            background: var(--surface-2);
+        }
+
+    .pago-table td {
+        padding: .8rem 1.25rem;
+        color: var(--text-soft);
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+        .pago-table td strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+.trans-id {
+    font-size: .75rem;
+    color: var(--text-muted);
+    font-family: 'Courier New', monospace;
+}
+
+/* ── BADGES ──────────────────────────────────────────── */
+.badge-pendiente,
+.badge-exitosa,
+.badge-fallida {
+    font-size: .68rem;
+    font-weight: 600;
+    padding: .28rem .8rem;
+    border-radius: 100px;
+    letter-spacing: .04em;
+    display: inline-block;
+}
+
+.badge-pendiente {
+    background: rgba(245,158,11,.15);
+    border: 1px solid rgba(245,158,11,.35);
+    color: var(--gold);
+}
+
+.badge-exitosa {
+    background: rgba(74,222,128,.1);
+    border: 1px solid rgba(74,222,128,.3);
+    color: #4ade80;
+}
+
+.badge-fallida {
+    background: rgba(248,113,113,.1);
+    border: 1px solid rgba(248,113,113,.3);
+    color: #f87171;
+}
+
+.btn-log {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: .73rem;
+    border-radius: 7px;
+    padding: .25rem .75rem;
+    font-family: 'Outfit', sans-serif;
+    transition: border-color .2s, color .2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+    .btn-log:hover {
+        border-color: var(--gold-line);
+        color: var(--gold);
+    }
+
+/* ── SIDE PANELS ─────────────────────────────────────── */
+.side-card {
+    background: var(--surface);
+    border: 1px solid var(--border) !important;
+    border-radius: 14px !important;
+    overflow: hidden;
+}
+
+    /* Línea de acento superior para distinguir paneles */
+    .side-card.notif {
+        border-top: 2px solid rgba(245,158,11,.5) !important;
+    }
+
+    .side-card.audit {
+        border-top: 2px solid rgba(99,102,241,.4) !important;
+    }
+
+.side-header {
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+    padding: .8rem 1.25rem;
+    font-size: .65rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+    .side-header .tag {
+        margin-left: auto;
+        font-size: .58rem;
+        color: var(--border);
+        letter-spacing: .06em;
+    }
+
+.notif-item {
+    border-bottom: 1px solid var(--border);
+    padding: .8rem 1.25rem;
+    transition: background .15s;
+}
+
+    .notif-item:last-child {
+        border-bottom: none;
+    }
+
+    .notif-item:hover {
+        background: var(--surface-2);
+    }
+
+.notif-email {
+    color: var(--gold);
+    font-weight: 600;
+    font-size: .82rem;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+}
+
+.notif-meta {
+    color: var(--text-muted);
+    font-size: .73rem;
+    margin-top: .2rem;
+}
+
+.audit-item {
+    border-bottom: 1px solid var(--border);
+    padding: .8rem 1.25rem;
+    transition: background .15s;
+}
+
+    .audit-item:last-child {
+        border-bottom: none;
+    }
+
+    .audit-item:hover {
+        background: var(--surface-2);
+    }
+
+.audit-event {
+    font-size: .82rem;
+    font-weight: 600;
+    color: #a78bfa; /* violeta suave — diferente al dorado para distinguir */
+}
+
+.audit-desc {
+    font-size: .77rem;
+    color: var(--text-muted);
+    margin: .18rem 0 .12rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.audit-id {
+    font-size: .68rem;
+    color: var(--border);
+}
+
+.audit-time {
+    font-size: .7rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.scroll-panel {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+    .scroll-panel::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    .scroll-panel::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .scroll-panel::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 10px;
+    }
+/* ── COLORES DINÁMICOS PARA ENCABEZADOS ──────────────── */
+
+/* Panel de Notificaciones (Dorado/Naranja) */
+.side-card.notif .panel-header {
+    background: rgba(245, 158, 11, 0.08); /* Un toque del color naranja del borde */
+    border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+    .side-card.notif .panel-header span i {
+        color: #f59e0b; /* El icono también brilla en naranja */
+    }
+
+/* Panel de Auditoría (Violeta/Indigo) */
+.side-card.audit .panel-header {
+    background: rgba(99, 102, 241, 0.08); /* Un toque del violeta del borde */
+    border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+    .side-card.audit .panel-header span i {
+        color: #818cf8; /* El icono brilla en violeta */
+    }
+
+/* Opcional: Hacer que los tags de la derecha se vean más integrados */
+.side-card .panel-header .tag {
+    background: rgba(255,255,255,0.05);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: .55rem;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+/* ── FORM ────────────────────────────────────────────── */
+.form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    max-width: 620px;
+}
+
+.form-card-header {
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.form-card-body {
+    padding: 1.75rem 1.5rem;
+}
+
+.pago-label {
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: .45rem;
+    display: block;
+}
+
+.pago-input,
+.pago-select,
+.pago-textarea {
+    width: 100%;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: .93rem;
+    font-weight: 300;
+    padding: .65rem 1rem;
+    transition: border-color .2s ease, box-shadow .2s ease;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+    .pago-input::placeholder,
+    .pago-textarea::placeholder {
+        color: var(--text-muted);
+    }
+
+    .pago-input:focus,
+    .pago-select:focus,
+    .pago-textarea:focus {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(245,158,11,.12);
+        background: var(--surface-2);
+        color: var(--text);
+    }
+
+    /* Fix autofill flash */
+    .pago-input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 100px var(--surface-2) inset !important;
+        -webkit-text-fill-color: var(--text) !important;
+    }
+
+.pago-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16'%3E%3Cpath fill='%23737373' d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+
+    .pago-select option {
+        background: var(--surface-2);
+        color: var(--text);
+    }
+
+.pago-textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.field-error {
+    font-size: .75rem;
+    color: #f87171;
+    margin-top: .35rem;
+    display: block;
+}
+
+.form-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 0;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding-top: .25rem;
+}
+
+.btn-back {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: .88rem;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: .55rem 1.25rem;
+    font-family: 'Outfit', sans-serif;
+    text-decoration: none;
+    transition: border-color .2s, color .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+}
+
+    .btn-back:hover {
+        border-color: var(--border-hover);
+        color: var(--text);
+    }

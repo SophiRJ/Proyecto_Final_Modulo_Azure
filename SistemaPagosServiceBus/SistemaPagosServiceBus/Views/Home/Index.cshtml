@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<link rel="stylesheet" href="~/css/pagos.css" />
+
+<div class="container py-5">
+    <div class="text-center mb-5 pt-3">
+        <span class="status-badge badge rounded-pill px-3 py-2 mb-4 d-inline-flex align-items-center gap-2">
+            <span class="status-dot"></span>
+            Sistema activo · Azure Service Bus
+        </span>
+        <h1 class="hero-title mb-3">
+            Sistema de Pagos<br>
+            <span class="accent">Distribuido</span>
+        </h1>
+        <p class="hero-desc mx-auto" style="max-width:540px;">
+            Plataforma de procesamiento de transacciones sobre arquitectura
+            orientada a eventos con colas, tópicos y auditoría en tiempo real.
+        </p>
+    </div>
+
+    <div class="row g-4 justify-content-center mb-4">
+
+        <div class="col-md-5">
+            <div class="card pago-card h-100 p-4 border-0">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="icon-chip">
+                        <i class="bi bi-table"></i>
+                    </div>
+                    <span class="card-num">01</span>
+                </div>
+                <div class="card-title mb-2">Panel de Transacciones</div>
+                <p class="card-desc mb-4">
+                    Monitorea el estado de pagos, procesamiento de cola
+                    y auditoría de eventos en tiempo real.
+                </p>
+                <a asp-controller="Transaccion" asp-action="Index" class="btn btn-gold d-inline-flex align-items-center gap-2">
+                    Ir al Panel <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="card pago-card h-100 p-4 border-0">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="icon-chip">
+                        <i class="bi bi-plus-circle"></i>
+                    </div>
+                    <span class="card-num">02</span>
+                </div>
+                <div class="card-title mb-2">Nueva Transacción</div>
+                <p class="card-desc mb-4">
+                    Registra un nuevo pago que será enviado a la cola
+                    para su procesamiento asíncrono.
+                </p>
+                <a asp-controller="Form" asp-action="Index" class="btn btn-outline-gold d-inline-flex align-items-center gap-2">
+                    Crear Transacción <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card arch-card p-4 border-0">
+        <p class="arch-section-label mb-4">
+            <i class="bi bi-diagram-3 me-1"></i> Arquitectura del Sistema
+        </p>
+        <div class="row g-2 align-items-center text-center">
+
+            <div class="col arch-step">
+                <div class="arch-icon"><i class="bi bi-person-plus"></i></div>
+                <div class="arch-step-name">Cliente</div>
+                <div class="arch-step-sub">Crea transacción</div>
+            </div>
+
+            <div class="col-auto arch-sep"><i class="bi bi-chevron-right"></i></div>
+
+            <div class="col arch-step">
+                <div class="arch-icon"><i class="bi bi-envelope-arrow-up"></i></div>
+                <div class="arch-step-name">Cola</div>
+                <div class="arch-step-sub">Procesamiento asíncrono</div>
+            </div>
+
+            <div class="col-auto arch-sep"><i class="bi bi-chevron-right"></i></div>
+
+            <div class="col arch-step">
+                <div class="arch-icon"><i class="bi bi-cpu"></i></div>
+                <div class="arch-step-name">Procesador</div>
+                <div class="arch-step-sub">Valida pagos</div>
+            </div>
+
+            <div class="col-auto arch-sep"><i class="bi bi-chevron-right"></i></div>
+
+            <div class="col arch-step">
+                <div class="arch-icon"><i class="bi bi-broadcast"></i></div>
+                <div class="arch-step-name">Tópicos</div>
+                <div class="arch-step-sub">Auditoría y eventos</div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

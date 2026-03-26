@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36705.20 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPagosServiceBus", "SistemaPagosServiceBus\SistemaPagosServiceBus.csproj", "{F2A6395C-F8D3-407A-9366-763A89FD92EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2A6395C-F8D3-407A-9366-763A89FD92EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2A6395C-F8D3-407A-9366-763A89FD92EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2A6395C-F8D3-407A-9366-763A89FD92EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2A6395C-F8D3-407A-9366-763A89FD92EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6870289C-5935-4569-B51A-BE00319867BE}
+	EndGlobalSection
+EndGlobal

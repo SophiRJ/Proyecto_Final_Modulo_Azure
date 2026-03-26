@@ -1,0 +1,85 @@
+﻿@model SistemaPagosServiceBus.Models.Transaccion
+@{
+    ViewData["Title"] = "Crear Transacción";
+}
+
+<link rel="stylesheet" href="~/css/pagos.css" />
+
+<div class="container py-5">
+
+ 
+    <div class="mb-4">
+        <p class="arch-section-label mb-1">
+            <i class="bi bi-plus-circle me-1"></i> Nueva Operación
+        </p>
+        <h2 class="hero-title mb-0" style="font-size:2rem;">
+            Crear <span class="accent">Transacción</span>
+        </h2>
+    </div>
+
+    <div class="form-card mx-auto">
+        <div class="form-card-header">
+            <i class="bi bi-pencil-square"></i> Datos de la transacción
+        </div>
+
+        <div class="form-card-body">
+            <form asp-action="Create" method="post">
+
+                <div class="mb-4">
+                    <label asp-for="Monto" class="pago-label"></label>
+                    <input asp-for="Monto"
+                           class="pago-input"
+                           type="number"
+                           placeholder="0.00" />
+                    <span asp-validation-for="Monto" class="field-error"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="TipoTransaccion" class="pago-label"></label>
+                    <select asp-for="TipoTransaccion" class="pago-select">
+                        <option value="">— Selecciona tipo —</option>
+                        <option value="PagoConTarjeta">Pago con Tarjeta</option>
+                        <option value="TransferenciaBancaria">Transferencia Bancaria</option>
+                    </select>
+                    <span asp-validation-for="TipoTransaccion" class="field-error"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="CuentaDestino" class="pago-label"></label>
+                    <input asp-for="CuentaDestino"
+                           class="pago-input"
+                           maxlength="16"
+                           minlength="16"
+                           placeholder="16 dígitos" />
+                    <span asp-validation-for="CuentaDestino" class="field-error"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="DetallesAdicionales" class="pago-label"></label>
+                    <textarea asp-for="DetallesAdicionales"
+                              class="pago-textarea"
+                              rows="3"
+                              placeholder="Información adicional..."></textarea>
+                    <span asp-validation-for="DetallesAdicionales" class="field-error"></span>
+                </div>
+
+                <hr class="form-divider" />
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-gold d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-send"></i> Crear Transacción
+                    </button>
+                    <a asp-controller="Transaccion" asp-action="Index" class="btn-back">
+                        <i class="bi bi-arrow-left"></i> Cancelar
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
